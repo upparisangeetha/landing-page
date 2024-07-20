@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendy Fashion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6f61;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+        }
+
+        .nav-links a {
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            margin: 5px 0;
+            width: 100%;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #ff6f61;
+            color: #000;
+        }
+
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px;
+        }
+
+        .search-bar {
+            display: none;
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .shop-now {
+            background: transparent;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            margin: 20px;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .shop-now:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                width: auto;
+                background: none;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+
+            .search-bar {
+                display: block;
+            }
+        }
+
+        #showcase {
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            background: url('C:/Users/USER/Downloads/pexels-nietjuh-934070.jpg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2em;
+            font-weight: bold;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .images-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+            margin-right: 20px;
+        }
+
+        .image {
+            flex: 1;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 150px;
+            height: 150px;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-text {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #000;
+            color: white;
+        }
+
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff6f61;
+        }
+
+        @media (max-width: 768px) {
+            .image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .image-text {
+                font-size: 10px;
+            }
+
+            .overlay-text {
+                font-size: 1.5em;
+                top: 40%;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+
+            .shop-now {
+                font-size: 1em;
+                top: 70%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .image-text {
+                font-size: 8px;
+            }
+
+            .overlay-text {
+                font-size: 1.2em;
+                top: 50%;
+            }
+
+            .search-bar input {
+                width: 100px;
+            }
+
+            .shop-now {
+                font-size: 0.9em;
+                top: 80%;
+            }
+        }
+
+        .nav-links.nav-links-active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Trendy Fashion</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Store</a>
+            <a href="#">Contact</a>
+            <a href="#">Sign Up</a>
+            <a href="#">Sign In</a>
+        </div>
+    </nav>
+    <header id="showcase">
+        <div class="overlay-text">
+            Discover the Latest Trends<br>and Timeless Pieces
+        </div>
+        <a href="#" class="shop-now">Shop Now</a>
+        <div class="images-container">
+            <div class="image" style="margin-top: 100px;">
+                <img src="C:/Users/USER/Desktop/task/image/fass.jpg" alt="Fashion">
+                <div class="image-text">Latest Trends</div>
+            </div>
+            <div class="image">
+                <img src="C:/Users/USER/Desktop/task/image/fe.jpg" alt="Exclusive Deals">
+                <div class="image-text">Exclusive Deals</div>
+            </div>
+            <div class="image">
+                <img src="C:/Users/USER/Desktop/task/image/fr.jpg" alt="Customer Favorites">
+                <div class="image-text">Customer Favorites</div>
+            </div>
+            <div class="image">
+                <img src="C:/Users/USER/Desktop/task/image/fw.jpg" alt="Trendy Apparel">
+                <div class="image-text">Trendy Apparel</div>
+            </div>
+        </div>
+    </header>
+    <footer class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('nav-links-active');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
